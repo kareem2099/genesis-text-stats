@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "name": "GENESIS Text Stats",
+  "description": "Count whitespace-separated words, Unicode code points and lines in your own text. A small real GitHub tool; no external network access.",
+  "entry": "src/index.ts",
+  "input": {
+    "text": {
+      "type": "string",
+      "label": "Your text",
+      "max": 2000
+    }
+  },
+  "network": [],
+  "timeoutMs": 2000,
+  "tests": [
+    {
+      "name": "Empty text",
+      "input": {
+        "text": ""
+      },
+      "expect": {
+        "words": 0,
+        "characters": 0,
+        "lines": 0
+      }
+    },
+    {
+      "name": "English text",
+      "input": {
+        "text": "hello world"
+      },
+      "expect": {
+        "words": 2,
+        "characters": 11,
+        "lines": 1
+      }
+    },
+    {
+      "name": "Arabic and emoji",
+      "input": {
+        "text": "مرحبا 🌍\nبك"
+      },
+      "expect": {
+        "words": 3,
+        "characters": 10,
+        "lines": 2
+      }
+    }
+  ],
+  "verify": "genesis-verify-ec0bf168cc90c94c167d8e37956e6e72"
+}
